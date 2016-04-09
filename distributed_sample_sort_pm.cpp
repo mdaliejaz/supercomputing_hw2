@@ -53,13 +53,14 @@ int main( int argc, char *argv[ ] )
     numOfProc = MPI::COMM_WORLD.Get_size ( );
 	double start1 = MPI_Wtime(); 
     rank = MPI::COMM_WORLD.Get_rank ( );
-  //  cout<<"Number of process= " <<numOfProc<<" and rank = "<<rank<<endl;    
+  if (rank == 0)
+    cout<<"Number of process= " <<numOfProc<<" and rank = "<<rank<<endl;    
 	double *inputData, *localData;
 	int localDataLen ;
 	int i,j;	
 	noOfElems = atoi(argv[1]);
 	
-	if (noOfElems %5 != 0)
+	if (noOfElems %16 != 0)
 	{
 		cout<<"no is not multiple of 5"<<endl;
 		return 1;
@@ -275,7 +276,7 @@ int main( int argc, char *argv[ ] )
 //		cout<<" recv array = "<<recvcount[0]<<recvcount[1]<<recvcount[2]<<endl;
 
 //		cout<<"----------------- all data ===================="<<endl;
-//		printArray(sortedArr, noOfElems);
+//		printArray(sortedArr, 30);
 
 //		cout<<"-------sorting printed==="<<endl;
 	}
