@@ -1,12 +1,12 @@
 #!/bin/bash
 #SBATCH -J Test        # Job Name
 #SBATCH -o Test.o%j    # Output and error file name (%j expands to jobID)
+#SBATCH -N 5
+#SBATCH -n 5          # Total number of  tasks requested
+
 #SBATCH -p development  # Queue (partition) name -- normal, development, etc.
 #SBATCH -t 01:30:00     # Run time (hh:mm:ss) - 1.5 hours
-#SBATCH -n 5
-#SBATCH -N 5
 
-export OMP_NUM_THREADS = 8;
 #rm *.csv *.plt Test*	
 #ibrun ./distributedSort > code_output
 export LD_LIBRARY_PATH=$HOME/cilk/lib64/:$PWD:$LD_LIBRARY_PATH
@@ -23,6 +23,7 @@ ibrun tacc_affinity ./a.out 390451845 > code_output390451845sm
 ibrun tacc_affinity ./a.out 439258200 > code_output439258200sm
 ibrun tacc_affinity ./a.out 488064555 > code_output488064555sm
 ibrun tacc_affinity ./a.out 536870910 > code_output536870910sm
+
 
 
 
